@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    <div class="blur hidden" id="blur">
+        <div class="popup">
+          <p class="popuptext" id="winnerText"></p>
+          <a class="btnok" onclick="closePopup()">OK!</a>
+        </div>
+      </div>
+    <div class="body">
+        <h1 class="gametitle"><span id="tic">TIC</span><span id="tac"> TAC</span><span id="toe"> TOE</span></h1>
+        <div class="container">
+            <div class="row">
+                <div class="key" id="box1">                
+                </div>
+                <div class="key" id="box2">                 
+                </div>
+                <div class="key" id="box3">                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="key" id="box4">                   
+                </div>
+                <div class="key" id="box5">                    
+                </div>
+                <div class="key" id="box6">                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="key" id="box7">                  
+                </div>
+                <div class="key" id="box8">                    
+                </div>
+                <div class="key" id="box9">            
+                </div>
+            </div>
+            
+            <div class="scorecontainer">
+                <p class="playerX">Player X</p>
+                <p class="score" id="result"> <span id="playerXscore">0</span>-<span id="playerOscore">0</span></p>
+                <p class="playerO">Player O</p>
+            </div>
+        </div>
+        <button onclick="clearBoard()" class="button clear">Clear</button>
+        <button onclick="reset()" class="button reset">Reset</button>
+      </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

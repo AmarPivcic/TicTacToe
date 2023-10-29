@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800,900');
+*{
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  font-family: 'Pacifico', cursive;
+}
+
+.blur{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.popup{
+  height: 250px;
+  width: 300px;
+  background-color: black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 25px 5px #0073e6;
+  border: solid 2px white;
+}
+
+.popuptext{
+  color: white;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  font-size: 20pt;
+  width: 80%;
+}
+
+.btnok{
+  color: white;
+  background-color: black;
+  padding: 7px;
+  border-radius: 20px;
+  width: 60px;
+  height: fit-content;
+  text-align: center;
+  margin-top: 25px;
+  border: 2px solid white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  box-shadow: 0 0 25px 5px #ff00ff;
+}
+
+.hidden{
+  display: none;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: black;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.key{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
+.scorecontainer{
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-size: 22pt;
+}
+
+.button{
+  margin-top: 30px;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  font-size: 14pt;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+.gametitle{
+  font-size: 30pt;
+}
+
+.green{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+.pink{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+.playerX{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+.playerO{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+.score{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+
+#tic{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+#tac{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+
+#toe{
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+#result{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.reset{
+  box-shadow: 0 0 25px 5px #ff00ff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+.clear{
+  box-shadow: 0 0 25px 5px #00ff00;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+#box1{
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+}
+
+#box2{
+  border-bottom: 3px solid white;
+}
+
+#box3{
+  border-bottom: 3px solid white;
+  border-left: 3px solid white;
+}
+
+#box4{
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+}
+
+#box5{
+  border-bottom: 3px solid white;
+}
+
+#box6{
+  border-bottom: 3px solid white;
+  border-left: 3px solid white;
+}
+
+#box7{  
+  border-right: 3px solid white;
+}
+
+
+#box9{
+  border-left: 3px solid white;
+}
+
