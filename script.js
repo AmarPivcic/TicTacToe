@@ -1,7 +1,3 @@
-const sleep = (time) => {
-    return new Promise((resolve) => setTimeout(resolve, time))
-  }
-
 var player = false;
 var gameOver = false;
 var playerX = 0;
@@ -28,11 +24,9 @@ function showPopup(winner)
     winnerText.innerHTML="The winner is " + winner;
 }
 
-const closePopup = async () => {
+function closePopup () {
     blurr.classList.add("hidden");
     body.classList.remove("stop-scrolling");
-    await sleep(3000);
-    clearBoard();
 }
 
 function showResult()
@@ -199,18 +193,26 @@ function checkScore()
     showResult();
 }
 
+function playAudio(source)
+{
+    var audio = new Audio(source);
+    audio.play();   
+}
+
 function setSymbol(element)
 {
     if(player===true)
     {
         element.innerHTML="<h1>X</h1>";
         element.classList.add("green");
+        playAudio("./sounds/green.mp3");
     }
     
     else
     {
         element.innerHTML="<h1>O</h1>";
         element.classList.add("pink");
+        playAudio("./sounds/pink.mp3");
     }
     checkScore();
 }
