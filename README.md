@@ -5,7 +5,7 @@ A simple Tic Tac Toe app is a fun and classic game that you can play on your And
 To play, each player takes turns clicking on an empty square on the grid to place their symbol. The game continues until one player gets three in a row or all the squares are filled, resulting in a draw. The app will display a message when someone wins.
 
 This game was made to be transformed into an .apk file for Android devices, but you can play it on your browser on any device.
-Transformation was done with Appilx website to app converter (https://appilix.com).
+Transformation was done with Appilix website to app converter (https://appilix.com).
 
 ## How to use
 
