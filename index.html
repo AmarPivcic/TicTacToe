@@ -18,7 +18,13 @@
       </div>
     <div class="body">
         <h1 class="gametitle"><span id="tic">TIC</span><span id="tac"> TAC</span><span id="toe"> TOE</span></h1>
-        <div class="container">
+        <div id="modeSelection">
+            <div class="modeSelection">
+                <button class="button2 reset" onclick="startGame('PvP')">Player vs Player</button>
+                <button class="button2 clear" onclick="startGame('PvBot')">Player vs Bot</button>
+            </div>
+        </div>
+        <div class="container hidden" id="gameContainer">
             <div class="row">
                 <div class="key" id="box1">                
                 </div>
@@ -51,10 +57,14 @@
                 <p class="score" id="result"> <span id="playerXscore">0</span>-<span id="playerOscore">0</span></p>
                 <p class="playerO">Player O</p>
             </div>
-        </div>
+            <p class="tie">Tie: <span id="tieScore">0</span></p>
+        <div class="buttonContainer">
         <button onclick="clearBoard()" class="button clear">Clear</button>
         <button onclick="reset()" class="button reset">Reset</button>
-      </div>
+        <button onclick="selectMode()" class="button selectMode">Gamemode</button>
+        </div>
+    </div>
+    </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="script.js"></script>
 </body>

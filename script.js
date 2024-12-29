@@ -2,26 +2,39 @@ var player = false;
 var gameOver = false;
 var playerX = 0;
 var playerO = 0;
+var tie = 0;
 var pXScore = document.getElementById("playerXscore");
 var pOScore = document.getElementById("playerOscore");
-var box1 = document.getElementById("box1");
-var box2 = document.getElementById("box2");
-var box3 = document.getElementById("box3");
-var box4 = document.getElementById("box4");
-var box5 = document.getElementById("box5");
-var box6 = document.getElementById("box6");
-var box7 = document.getElementById("box7");
-var box8 = document.getElementById("box8");
-var box9 = document.getElementById("box9");
+var tieScore = document.getElementById("tieScore");
 var blurr = document.getElementById("blur");
 var body = document.getElementById("body");
 var winnerText = document.getElementById("winnerText");
+let gameMode = "";
+
+var board = ["", "", "", "", "", "", "", "", ""];
+
+function selectMode() {
+    gameMode = "";
+    document.getElementById("modeSelection").classList.remove("hidden");
+    document.getElementById("gameContainer").classList.add("hidden");
+    reset();
+}
+
+function startGame(mode) {
+    gameMode = mode;
+    document.getElementById("modeSelection").classList.add("hidden");
+    document.getElementById("gameContainer").classList.remove("hidden");
+    reset();
+}
 
 function showPopup(winner)
 {
     blurr.classList.remove("hidden");
     body.classList.add("stop-scrolling");
-    winnerText.innerHTML="The winner is " + winner;
+    if(winner==="tie")
+        winnerText.innerHTML="Tie!";
+    else
+        winnerText.innerHTML="The winner is " + winner;
 }
 
 function closePopup () {
@@ -33,163 +46,54 @@ function showResult()
 {
     pXScore.innerHTML=playerX;
     pOScore.innerHTML=playerO;
+    tieScore.innerHTML=tie;
 }
 
-function clearBoard()
-{
-   box1.innerHTML="";
-   box2.innerHTML="";
-   box3.innerHTML="";
-   box4.innerHTML="";
-   box5.innerHTML="";
-   box6.innerHTML="";
-   box7.innerHTML="";
-   box8.innerHTML="";
-   box9.innerHTML="";
-   box1.classList.remove("green", "pink");
-   box2.classList.remove("green", "pink");
-   box3.classList.remove("green", "pink");
-   box4.classList.remove("green", "pink");
-   box5.classList.remove("green", "pink");
-   box6.classList.remove("green", "pink");
-   box7.classList.remove("green", "pink");
-   box8.classList.remove("green", "pink");
-   box9.classList.remove("green", "pink");
-   gameOver=false;
+
+function clearBoard() {
+    board = ["", "", "", "", "", "", "", "", ""];
+    for (let i = 1; i <= 9; i++) {
+        let box = document.getElementById(`box${i}`);
+        box.innerHTML = "";
+        box.classList.remove("green", "pink");
+    }
+    gameOver = false;
 }
 
 function reset()
 {
-    player = false;
-    gameOver = false;
     playerX = 0;
     playerO = 0;
+    tie = 0;
     showResult();
     clearBoard();
 }
 
-function checkScore()
-{
-    if(box1.innerHTML===box2.innerHTML && box1.innerHTML===box3.innerHTML && box1.innerHTML.trim()!="" && box2.innerHTML.trim()!="" && box3.innerHTML.trim()!="")
-    {
-        showPopup(box1.textContent)
-        gameOver=true;
-        if(box1.textContent==="X")
-        {
-            playerX++;
-        }
+function checkWinner(board) {
+    const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 4, 8], [2, 4, 6],           
+    ];
 
-        else
-        {
-            playerO++;
+    for (let pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return board[a];
         }
     }
+    return board.includes("") ? null : "tie";
+}
 
-    else if(box4.innerHTML===box5.innerHTML && box4.innerHTML===box6.innerHTML && box4.innerHTML.trim()!="" && box5.innerHTML.trim()!="" && box6.innerHTML.trim()!="")
-    {
-        showPopup(box4.textContent)
-        gameOver=true;
-        if(box4.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
+function checkScore() {
+    let winner = checkWinner(board);
+    if (winner) {
+        gameOver = true;
+        if (winner === "X") playerX++;
+        if (winner === "O") playerO++;
+        if (winner === "tie") tie++;
+        showPopup(winner);
     }
-
-    else if(box7.innerHTML===box8.innerHTML && box7.innerHTML===box9.innerHTML && box7.innerHTML.trim()!="" && box8.innerHTML.trim()!="" && box9.innerHTML.trim()!="")
-    {
-        showPopup(box7.textContent)
-        gameOver=true;
-        if(box7.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
-    }
-
-    else if(box1.innerHTML===box4.innerHTML && box1.innerHTML===box7.innerHTML && box1.innerHTML.trim()!="" && box4.innerHTML.trim()!="" && box7.innerHTML.trim()!="")
-    {
-        showPopup(box1.textContent)
-        gameOver=true;
-        if(box1.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
-    }
-
-    else if(box2.innerHTML===box5.innerHTML && box2.innerHTML===box8.innerHTML && box2.innerHTML.trim()!="" && box5.innerHTML.trim()!="" && box8.innerHTML.trim()!="")
-    {
-        showPopup(box2.textContent)
-        gameOver=true;
-        if(box2.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
-    }
-
-    else if(box3.innerHTML===box6.innerHTML && box3.innerHTML===box9.innerHTML && box3.innerHTML.trim()!="" && box6.innerHTML.trim()!="" && box9.innerHTML.trim()!="")
-    {
-        showPopup(box3.textContent)
-        gameOver=true;
-        if(box3.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
-    }
-
-    else if(box1.innerHTML===box5.innerHTML && box1.innerHTML===box9.innerHTML && box1.innerHTML.trim()!="" && box5.innerHTML.trim()!="" && box9.innerHTML.trim()!="")
-    {
-        showPopup(box1.textContent)
-        gameOver=true;
-        if(box1.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
-    }
-
-    else if(box3.innerHTML===box5.innerHTML && box3.innerHTML===box7.innerHTML && box3.innerHTML.trim()!="" && box5.innerHTML.trim()!="" && box7.innerHTML.trim()!="")
-    {
-        showPopup(box3.textContent)
-        gameOver=true;
-        if(box3.textContent==="X")
-        {
-            playerX++;
-        }
-
-        else
-        {
-            playerO++;
-        }
-    }
-
     showResult();
 }
 
@@ -199,41 +103,82 @@ function playAudio(source)
     audio.play();   
 }
 
-function setSymbol(element)
-{
-    if(player===true)
-    {
-        element.innerHTML="<h1>X</h1>";
-        element.classList.add("green");
-        playAudio("./sounds/green.mp3");
-    }
-    
-    else
-    {
-        element.innerHTML="<h1>O</h1>";
-        element.classList.add("pink");
+function setSymbol(index, symbol) {
+    var element = document.getElementById("box" + (index + 1));
+    element.innerHTML = `<h1>${symbol}</h1>`;
+    element.classList.add(symbol === "X" ? "green" : "pink");
+    board[index] = symbol;
+
+    if(symbol==="X")
         playAudio("./sounds/pink.mp3");
-    }
+        
+    else
+        playAudio("./sounds/green.mp3");
+        
     checkScore();
 }
 
-$(".key").click(function () {
-    var elementId = $(this).attr('id');
-    var element = document.getElementById(elementId);
-    if(!gameOver)
-    {
-        if(element.innerHTML.trim()=="")
-        {
-            if(player===false)
-            {
-                player=true;
-            }
-            else
-            {
-                player=false;
-            }
-        setSymbol(element);
-        }
-    }   
-});
+function minimax(newBoard, depth, isMaximizing) {
+    const scores = { X: -10, O: 10, tie: 0 };
 
+    let winner = checkWinner(newBoard);
+    if (winner) return scores[winner];
+
+    if (isMaximizing) {
+        let bestScore = -Infinity;
+        for (let i = 0; i < newBoard.length; i++) {
+            if (newBoard[i] === "") {
+                newBoard[i] = "O";
+                let score = minimax(newBoard, depth + 1, false);
+                newBoard[i] = "";
+                bestScore = Math.max(score, bestScore);
+            }
+        }
+        return bestScore;
+    } else {
+        let bestScore = Infinity;
+        for (let i = 0; i < newBoard.length; i++) {
+            if (newBoard[i] === "") {
+                newBoard[i] = "X";
+                let score = minimax(newBoard, depth + 1, true);
+                newBoard[i] = "";
+                bestScore = Math.min(score, bestScore);
+            }
+        }
+        return bestScore;
+    }
+}
+
+function botMove() {
+    let bestScore = -Infinity;
+    let move;
+    setTimeout(() => {
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] === "") {
+                board[i] = "O";
+                let score = minimax(board, 0, false);
+                board[i] = "";
+                if (score > bestScore) {
+                    bestScore = score;
+                    move = i;
+                }
+            }
+        }
+        setSymbol(move, "O");
+     }, 750)
+}
+
+$(".key").click(function () {
+    var elementId = $(this).attr("id");
+    var index = parseInt(elementId.replace("box", "")) - 1;
+
+    if (!gameOver && board[index] === "") {
+        if (gameMode === "PvP") {
+            setSymbol(index, player ? "O" : "X");
+            player = !player; 
+        } else if (gameMode === "PvBot") {
+            setSymbol(index, "X");
+            if (!gameOver) botMove();
+        }
+    }
+});
