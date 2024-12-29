@@ -1,26 +1,34 @@
 # Tic Tac Toe
 
-A simple Tic Tac Toe app is a fun and classic game that you can play on your Android device or online. It's a two-player game where one player is 'X' and the other is 'O.' The game board consists of a 3x3 grid, and the goal is to be the first to get three of your symbols in a row, either horizontally, vertically, or diagonally. 
+A simple Tic Tac Toe game that you can play online, featuring both Player vs. Player (PvP) and Player vs. Bot (PvBot) modes. It's a two-player classic game where one player is 'X' and the other is 'O.' The game board consists of a 3x3 grid, and the goal is to be the first to get three of your symbols in a row, either horizontally, vertically, or diagonally.
 
-To play, each player takes turns clicking on an empty square on the grid to place their symbol. The game continues until one player gets three in a row or all the squares are filled, resulting in a draw. The app will display a message when someone wins.
+In **PvP mode**, two players take turns placing their symbols on the grid.  
+In **PvBot mode**, you compete against an intelligent AI agent that uses the Minimax algorithm to make optimal moves, providing a challenging experience.
 
-This game was made to be transformed into an .apk file for Android devices, but you can play it on your browser on any device.
-Transformation was done with Appilix website to app converter (https://appilix.com).
+The app includes a clean interface and smooth gameplay, making it enjoyable on any device with a modern web browser.
 
-## How to use
+## How to Use
 
-- Click or tap on the box in the grid where you want to place your symbol
-- Click on the "Clear" button to clear the grid. You can do this during the play or after the play has finished.
-- Click on the "Reset" button to clear the grid and reset the scoreboard.
+- At the start of the game, choose between **PvP** and **PvBot** mode.
+- Once a mode is selected, the game board and controls will appear.
+- Click or tap on a box in the grid to place your symbol.
+  - In **PvP mode**, players take turns manually.
+  - In **PvBot mode**, you play as 'X' while the AI plays as 'O.' The bot's move is slightly delayed for a more realistic experience.
+- Click the **Clear** button to reset the grid during or after a game.
+- Click the **Reset** button to clear the grid and reset the scoreboard.
 
-## Downloading and viewing the project
+## Features
 
-To view the website live and explore its features, please visit this link: https://amarpivcic.github.io/TicTacToe/
+- **Player vs. Player Mode**: Traditional Tic Tac Toe gameplay.
+- **Player vs. Bot Mode**: Test your skills against an AI using the Minimax algorithm.
+- **Score Tracking**: Keep track of wins for both players.
+- **Clean and Responsive Interface**: Works seamlessly on desktops, tablets, and mobile devices.
 
-Also, you can install this game on your Android device, simply download the .apk file from the following link and install it (Don't forget to enable installation from third party sites in your device settings).
+## Viewing the Project
 
-Download link: https://www.mediafire.com/file/v51rvx4xrxi43bs/TicTacToe.apk/file
+To view the website live and explore its features, visit the following link:  
+[https://amarpivcic.github.io/TicTacToe/](https://amarpivcic.github.io/TicTacToe/)
 
 ## Contact
 
-If you have any feedback or questions about this or any other project, feel free to contact me.
+If you have any feedback or questions about this or other projects, feel free to contact me.
