@@ -10,6 +10,7 @@ var blurr = document.getElementById("blur");
 var body = document.getElementById("body");
 var winnerText = document.getElementById("winnerText");
 let gameMode = "";
+var botTurn = false;
 
 var board = ["", "", "", "", "", "", "", "", ""];
 
@@ -58,6 +59,7 @@ function clearBoard() {
         box.classList.remove("green", "pink");
     }
     gameOver = false;
+    botTurn = false;
 }
 
 function reset()
@@ -150,8 +152,10 @@ function minimax(newBoard, depth, isMaximizing) {
 }
 
 function botMove() {
+    botTurn = true;
     let bestScore = -Infinity;
     let move;
+
     setTimeout(() => {
         for (let i = 0; i < board.length; i++) {
             if (board[i] === "") {
@@ -165,7 +169,8 @@ function botMove() {
             }
         }
         setSymbol(move, "O");
-     }, 750)
+        botTurn = false;
+    }, 750);
 }
 
 $(".key").click(function () {
@@ -176,7 +181,7 @@ $(".key").click(function () {
         if (gameMode === "PvP") {
             setSymbol(index, player ? "O" : "X");
             player = !player; 
-        } else if (gameMode === "PvBot") {
+        } else if (gameMode === "PvBot" && !botTurn) {
             setSymbol(index, "X");
             if (!gameOver) botMove();
         }
