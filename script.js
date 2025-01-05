@@ -7,10 +7,17 @@ var pXScore = document.getElementById("playerXscore");
 var pOScore = document.getElementById("playerOscore");
 var tieScore = document.getElementById("tieScore");
 var blurr = document.getElementById("blur");
+var settings = document.getElementById("blurSettings")
 var body = document.getElementById("body");
 var winnerText = document.getElementById("winnerText");
 let gameMode = "";
 var botTurn = false;
+var difficulty = "easy";
+var difficultyLevel = 0.8;
+var easyButton = document.getElementById("easyButton");
+var mediumButton = document.getElementById("mediumButton");
+var hardButton = document.getElementById("hardButton");
+
 
 var board = ["", "", "", "", "", "", "", "", ""];
 
@@ -18,6 +25,7 @@ function selectMode() {
     gameMode = "";
     document.getElementById("modeSelection").classList.remove("hidden");
     document.getElementById("gameContainer").classList.add("hidden");
+    document.getElementById("settings").classList.add("hidden");
     reset();
 }
 
@@ -25,7 +33,43 @@ function startGame(mode) {
     gameMode = mode;
     document.getElementById("modeSelection").classList.add("hidden");
     document.getElementById("gameContainer").classList.remove("hidden");
+    if(mode==="PvBot")
+        document.getElementById("settings").classList.remove("hidden");
+    else
+    document.getElementById("settings").classList.add("hidden");
     reset();
+}
+
+function openSettings()
+{
+    settings.classList.remove("hidden");
+    body.classList.add("stop-scrolling");
+}
+
+function selectDifficulty(mode)
+{
+    if(mode === "easy")
+    {
+        easyButton.classList.add("clear");
+        mediumButton.classList.remove("clear");
+        hardButton.classList.remove("clear");
+        difficultyLevel = 0.8;
+    }
+    else if (mode === "medium")
+    {
+        easyButton.classList.remove("clear");
+        mediumButton.classList.add("clear");
+        hardButton.classList.remove("clear");
+        difficultyLevel = 0.4;
+    }
+    else if(mode ==="hard")
+    {
+        easyButton.classList.remove("clear");
+        mediumButton.classList.remove("clear");
+        hardButton.classList.add("clear");
+        difficultyLevel = 0;
+    }
+    difficulty=mode;
 }
 
 function showPopup(winner)
@@ -40,6 +84,7 @@ function showPopup(winner)
 
 function closePopup () {
     blurr.classList.add("hidden");
+    settings.classList.add("hidden");
     body.classList.remove("stop-scrolling");
 }
 
@@ -151,20 +196,35 @@ function minimax(newBoard, depth, isMaximizing) {
     }
 }
 
+
 function botMove() {
     botTurn = true;
     let bestScore = -Infinity;
     let move;
 
     setTimeout(() => {
-        for (let i = 0; i < board.length; i++) {
-            if (board[i] === "") {
-                board[i] = "O";
-                let score = minimax(board, 0, false);
-                board[i] = "";
-                if (score > bestScore) {
-                    bestScore = score;
-                    move = i;
+        if (Math.random() < difficultyLevel) {
+            let emptyCells = [];
+            for (let i = 0; i < board.length; i++) {
+                if (board[i] === "") {
+                    emptyCells.push(i);
+                }
+            }
+            if (emptyCells.length > 0) {
+                move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            }
+        } 
+        
+        else {
+            for (let i = 0; i < board.length; i++) {
+                if (board[i] === "") {
+                    board[i] = "O";
+                    let score = minimax(board, 0, false);
+                    board[i] = "";
+                    if (score > bestScore) {
+                        bestScore = score;
+                        move = i;
+                    }
                 }
             }
         }
